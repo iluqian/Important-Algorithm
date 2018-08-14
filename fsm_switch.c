@@ -43,6 +43,39 @@ int main(int argc, char *argv[]){
 	}
 	return 0;
 }
+/*
+  
+int state = 0
+while(state < 3)
+{
+	switch(state)
+	{
+		case 0:
+			//Do state 0 stuff
+			if(should_go_to_next_state)
+				state++;
+			break;
+		case 1:
+			//Do state 1 stuff
+			if(should_go_to_next_state)
+				state++;
+			else if(should_go_back)
+				state--;
+			break;
+		case 2:
+			//Do state 2 stuff
+			if(should_go_to_next_state)
+				state++;
+			else if(should_go_back_two)
+				state-=2;
+			break;
+		default:
+			break;
+	}
+
+}
 
 
+*/
+ 
 
