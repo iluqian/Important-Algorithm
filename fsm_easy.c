@@ -7,11 +7,13 @@ int foo_state(void);
 int bar_state(void);
 int exit_state(void);
 
-int (*state[])(void) = {entry_state,foo_state,bar_state,exit_state};
-enum state_codes {entry, foo, bar, end}; //状态
+/*array and enum below must be sync*/
+int (*state[])(void) = {entry_state,foo_state,bar_state,exit_state}; // 状态对应的回调
+enum state_codes {entry, foo, bar, end}; //状态  
 
 enum ret_codes {ok, fail, repeat};  //事件
-struct transition {
+
+struct transition { //描述一个过程需要的结构体
 	enum state_codes src_state;
 	enum ret_codes ret_code;
 	enum state_codes dst_state;
@@ -59,8 +61,9 @@ int main(int argc, char *argv[]){
 	for(;;){
 		state_fun = state[cur_state];/*使用函数指针state_fun来调用函数*/
 		rc = state_fun();
-		if(EXIT_STATE == cur_state)
+	/*	if(EXIT_STATE == cur_state)
 				break;
+	*/
 		//状态的切换	
 		cur_state = lookup_transitions(cur_state,rc);
 			
