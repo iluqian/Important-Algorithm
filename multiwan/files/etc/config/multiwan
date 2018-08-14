@@ -1,0 +1,28 @@
+
+config multiwan 'config'
+	option default_route 'fastbalancer'
+	option enabled '0'
+
+config interface 'wan'
+	option failover_to 'wan2'
+	option dns 'auto'
+	option health_interval '5'
+	option timeout '3'
+	option health_fail_retries '3'
+	option weight '1'
+	option icmp_hosts 'gateway'
+	option health_recovery_retries '1'
+
+config interface 'wan2'
+	option failover_to 'wan'
+	option dns 'auto'
+	option health_interval '5'
+	option timeout '3'
+	option health_fail_retries '3'
+	option icmp_hosts 'gateway'
+	option weight '1'
+	option health_recovery_retries '1'
+
+config mwanfw
+	option wanrule 'fastbalancer'
+

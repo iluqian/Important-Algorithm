@@ -1,0 +1,12 @@
+#!/bin/sh
+. /lib/functions.sh
+
+if [ "$ACTION" = ifup ]; then
+
+config_load "multiwan"
+config_get_bool	enabled	config	enabled '1'
+ 
+[ "$enabled" -gt 0 ] && /etc/init.d/multiwan enabled && /etc/init.d/multiwan restart
+ 
+fi
+
